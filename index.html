@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajesh — Cinematic Portfolio Showcase</title>
+  <meta name="description" content="Cinematic scroll-driven portfolio hero of Rajesh. High-impact visual direction and interactive showcase.">
+  
+  <!-- Google Fonts: Jost & Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+  
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fullscreen Logo Video Intro Overlay -->
+  <div id="logo-intro-overlay" class="logo-intro-overlay">
+    <div id="intro-logo-box" class="intro-logo-box">
+      <!-- Animated Video from logo folder -->
+      <video id="intro-logo-video" class="intro-logo-video" src="logo/logo.mp4" autoplay muted playsinline preload="auto"></video>
+      <!-- Static JPG that crossfades when video finishes -->
+      <img id="intro-logo-img" class="intro-logo-img" src="logo/logo.jpeg" alt="Rajesh Logo">
+    </div>
+  </div>
+
+  <!-- Persistent Site Header -->
+  <header class="site-header" id="site-header">
+    <div class="header-left">
+      <!-- Target Slot where the intro logo docks and transforms into JPG -->
+      <div class="header-logo-slot" id="header-logo-slot">
+        <img id="header-logo-final" class="header-logo-final" src="logo/logo.jpeg" alt="Rajesh Logo">
+      </div>
+      <div class="header-brand-info">
+        <span class="brand-name">RAJESH</span>
+        <span class="brand-tag">PORTFOLIO</span>
+      </div>
+    </div>
+
+    <nav class="header-nav" id="header-nav">
+      <a href="#about" class="nav-link">ABOUT</a>
+      <a href="#works" class="nav-link">WORKS</a>
+      <a href="#contact" class="nav-btn">
+        <span>LET'S TALK</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </nav>
+  </header>
+
+  <!-- Main Scroll Container -->
+  <main class="main-container">
+
+    <!-- Scroll Track (700vh for smooth, controlled 60-frame scroll) -->
+    <section id="hero-scroll-track" class="hero-scroll-track">
+
+      <!-- Pinned Viewport Container -->
+      <div id="hero-pinned-viewport" class="hero-pinned-viewport">
+
+        <!-- Layer 1A: Realistic Cinematic Fire Sparks & Embers Canvas -->
+        <canvas id="fire-sparks-canvas" class="fire-sparks-canvas" aria-hidden="true"></canvas>
+
+        <!-- Layer 1B: Volumetric Fire Ambient Glow & Vignette -->
+        <div class="fire-glow-core" id="fire-glow-core"></div>
+        <div class="fire-vignette"></div>
+
+        <!-- Layer 4: Top Heading (Positioned elegantly below header) -->
+        <header class="top-heading-wrapper" id="top-heading-wrapper">
+          <div class="heading-pill">
+            <span class="pill-dot"></span>
+            <h2 class="top-heading" id="top-heading">• • • WELCOME TO MY WORLD • • •</h2>
+            <span class="pill-dot"></span>
+          </div>
+        </header>
+
+        <!-- Layer 2: Oversized Bold Red Background Typography (Behind Person) -->
+        <div class="bg-title-wrapper" id="bg-title-wrapper" aria-hidden="true">
+          <h1 class="bg-title-rajesh" id="bg-title-rajesh">
+            <span class="letter">R</span>
+            <span class="letter">A</span>
+            <span class="letter">J</span>
+            <span class="letter">E</span>
+            <span class="letter">S</span>
+            <span class="letter">H</span>
+          </h1>
+        </div>
+
+        <!-- Layer 3: Central Person Shadow-to-Light Stage (NO MASK LINES) -->
+        <div class="person-stage-wrapper" id="person-stage-wrapper">
+          
+          <!-- Volumetric Stage Backlight behind character silhouette -->
+          <div class="volumetric-backlight" id="volumetric-backlight"></div>
+
+          <!-- Person Canvas with dynamic lighting transitions -->
+          <div class="person-canvas-container" id="person-canvas-container">
+            <canvas id="person-canvas" class="person-canvas"></canvas>
+          </div>
+
+          <!-- Soft Ground Smoke & Ember Glow -->
+          <div class="ground-smoke-glow" id="ground-smoke-glow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================
+         CINEMATIC ABOUT SECTION (6-Second Walking Video Reveal)
+         ======================================================================== -->
+    <section id="about" class="about-scroll-track">
+      <div id="about-pinned-viewport" class="about-pinned-viewport">
+
+        <!-- 70% Width Centered Stage -->
+        <div class="about-stage" id="about-stage">
+
+          <!-- Background Ambient Atmosphere -->
+          <div class="about-bg-ambience"></div>
+          <div class="about-vignette"></div>
+
+          <!-- Typography Layer (Warm Ivory & Muted Gold, Behind walking person) -->
+          <div class="about-content-wrapper" id="about-content-wrapper">
+            <div class="about-editorial-container">
+              
+              <!-- Section Pre-title -->
+              <div class="about-badge" id="about-badge">
+                <span class="about-badge-line"></span>
+                <span class="about-badge-text">ABOUT ME</span>
+              </div>
+
+              <!-- Main Heading (Cormorant Garamond Serif) -->
+              <h2 class="about-main-heading" id="about-main-heading">
+                Crafting Digital Experiences<br>
+                <span class="heading-gold">Through Code.</span>
+              </h2>
+
+              <!-- Lead Intro Paragraph -->
+              <div class="about-lead-block" id="about-lead-block">
+                <p>
+                  I'm <strong class="lead-highlight">Rajesh Penumalla</strong>, a Web Developer with over 2 years of experience creating modern, responsive, and user-focused websites.
+                </p>
+              </div>
+
+              <!-- Technical & Craft Body Content -->
+              <div class="about-body-grid" id="about-body-grid">
+                <div class="about-col about-col-left">
+                  <p>
+                    My expertise lies in <span class="gold-accent">HTML</span>, <span class="gold-accent">CSS</span>, <span class="gold-accent">JavaScript</span>, and <span class="gold-accent">WordPress</span>, where I combine technical precision with thoughtful design to build seamless digital experiences.
+                  </p>
+                  <p>
+                    From translating design concepts into functional interfaces to developing websites that perform across devices, I focus on quality, usability, and attention to detail.
+                  </p>
+                </div>
+
+                <div class="about-col about-col-right">
+                  <p class="about-philosophy-quote">
+                    "I believe great web development is more than writing code — it's about transforming ideas into meaningful digital experiences."
+                  </p>
+
+                  <!-- Closing Approach Card -->
+                  <div class="about-closing-card" id="about-closing-card">
+                    <span class="closing-label">MY APPROACH IS SIMPLE:</span>
+                    <p class="closing-pillars">
+                      <span class="pillar">Clean code.</span>
+                      <span class="pillar-divider">•</span>
+                      <span class="pillar">Thoughtful design.</span>
+                      <span class="pillar-divider">•</span>
+                      <span class="pillar gold-pillar">Meaningful results.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Canvas Layer: 180 Walking Frames from about-video-frames (Foreground) -->
+          <div class="about-canvas-wrapper" id="about-canvas-wrapper">
+            <canvas id="about-canvas" class="about-canvas"></canvas>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CINEMATIC 3D IMAGE CAROUSEL SECTION (#works)
+         Three Interactive 3D Perspective Gallery Cards
+         ======================================================================== -->
+    <section id="works" class="works-carousel-section">
+      <div class="works-container">
+        
+        <!-- Section Header -->
+        <div class="works-header">
+          <div class="about-badge">
+            <span class="about-badge-line"></span>
+            <span class="about-badge-text">FEATURED SHOWCASE</span>
+          </div>
+          <h2 class="works-title">
+            Visual Craft <br>
+            <span class="heading-gold">In Perspective.</span>
+          </h2>
+          <p class="works-description">
+            A curated dimensional showcase celebrating identity, visual presence, and cinematic atmosphere.
+          </p>
+        </div>
+
+        <!-- 3D Carousel Stage Wrapper -->
+        <div class="carousel-3d-wrapper" id="carousel-3d-wrapper">
+          
+          <!-- Volumetric Ambient Light Aura -->
+          <div class="carousel-ambient-glow" aria-hidden="true"></div>
+
+          <!-- 3D Perspective Stage -->
+          <div class="carousel-stage" id="carousel-stage" role="region" aria-label="3D Image Carousel" tabindex="0">
+            
+            <!-- Card 0: Night Urban Black SUV (Center Active Initially) -->
+            <div class="carousel-card is-center" data-index="0" id="carousel-card-0" role="group" aria-roledescription="slide" aria-label="1 of 3: Urban Nocturne">
+              <div class="card-inner">
+                <img src="images/Gemini_Generated_Image_kuix1ukuix1ukuix.png" alt="Rajesh Penumalla - Urban Night Showcase with Black SUV" class="carousel-img">
+                <div class="card-glass-rim"></div>
+                <div class="card-caption">
+                  <span class="card-tag">URBAN NOCTURNE</span>
+                  <h3 class="card-title">Presence & Motion</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 1: Modern Cafe Lifestyle (Right Initially) -->
+            <div class="carousel-card is-right" data-index="1" id="carousel-card-1" role="group" aria-roledescription="slide" aria-label="2 of 3: Creative Moments">
+              <div class="card-inner">
+                <img src="images/Generated image 2.png" alt="Rajesh Penumalla - Casual Modern Cafe Showcase" class="carousel-img">
+                <div class="card-glass-rim"></div>
+                <div class="card-caption">
+                  <span class="card-tag">CREATIVE MOMENTS</span>
+                  <h3 class="card-title">Thoughtful Focus</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Equestrian Outdoor Landscape (Left Initially) -->
+            <div class="carousel-card is-left" data-index="2" id="carousel-card-2" role="group" aria-roledescription="slide" aria-label="3 of 3: Horizon & Grace">
+              <div class="card-inner">
+                <img src="images/Gemini_Generated_Image_cdu946cdu946cdu9.png" alt="Rajesh Penumalla - Equestrian Nature Landscape with Horse" class="carousel-img">
+                <div class="card-glass-rim"></div>
+                <div class="card-caption">
+                  <span class="card-tag">HORIZON & GRACE</span>
+                  <h3 class="card-title">Raw Ambition</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Carousel Navigation & Indicators -->
+          <div class="carousel-controls">
+            <!-- Prev Button -->
+            <button class="carousel-nav-btn prev-btn" id="carousel-prev-btn" aria-label="Previous Slide">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+
+            <!-- Pagination Dots -->
+            <div class="carousel-indicators" id="carousel-indicators" role="tablist" aria-label="Carousel pagination">
+              <button class="indicator-dot is-active" data-slide="0" aria-label="Go to slide 1" role="tab" aria-selected="true"></button>
+              <button class="indicator-dot" data-slide="1" aria-label="Go to slide 2" role="tab" aria-selected="false"></button>
+              <button class="indicator-dot" data-slide="2" aria-label="Go to slide 3" role="tab" aria-selected="false"></button>
+            </div>
+
+            <!-- Next Button -->
+            <button class="carousel-nav-btn next-btn" id="carousel-next-btn" aria-label="Next Slide">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       CINEMATIC SITE FOOTER & CONTACT SECTION (#contact)
+       ======================================================================== -->
+  <footer id="contact" class="site-footer">
+    <!-- Ambient Red Atmosphere Aura -->
+    <div class="footer-ambient-glow" aria-hidden="true"></div>
+
+    <div class="footer-container">
+      
+      <!-- Upper Section: Heroic Call To Action -->
+      <div class="footer-cta-block">
+        <div class="about-badge">
+          <span class="about-badge-line"></span>
+          <span class="about-badge-text">GET IN TOUCH</span>
+        </div>
+
+        <h2 class="footer-cta-heading">
+          Let's Build Something <br>
+          <span class="heading-gold">Extraordinary.</span>
+        </h2>
+
+        <p class="footer-cta-desc">
+          Have an exciting project, a role to discuss, or want to collaborate on creating next-level web experiences? My inbox is always open.
+        </p>
+
+        <!-- Big Contact CTA Actions -->
+        <div class="footer-cta-actions">
+          <a href="mailto:rajeshpenumalla@gmail.com" class="footer-primary-btn" id="footer-email-btn">
+            <span>START A CONVERSATION</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <button class="footer-copy-btn" id="footer-copy-email-btn" aria-label="Copy email address" title="Copy email address">
+            <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span class="copy-text" id="copy-email-text">rajeshpenumalla@gmail.com</span>
+            <span class="copy-badge" id="copy-email-badge">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Middle Section: Multi-Column Info Grid -->
+      <div class="footer-grid">
+        
+        <!-- Column 1: Brand & Availability -->
+        <div class="footer-col footer-col-brand">
+          <div class="footer-brand">
+            <span class="brand-name">RAJESH</span>
+            <span class="brand-tag">PORTFOLIO</span>
+          </div>
+          <p class="footer-bio">
+            Web Developer passionate about crafting visually engaging, responsive, and precision-engineered digital interfaces.
+          </p>
+          <div class="footer-status-pill">
+            <span class="status-pulse-dot"></span>
+            <span class="status-text">Available for freelance & full-time</span>
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Links -->
+        <div class="footer-col footer-col-nav">
+          <h4 class="footer-col-title">NAVIGATION</h4>
+          <ul class="footer-link-list">
+            <li><a href="#hero-scroll-track" class="footer-nav-link">Home</a></li>
+            <li><a href="#about" class="footer-nav-link">About Me</a></li>
+            <li><a href="#works" class="footer-nav-link">Featured Works</a></li>
+            <li><a href="#contact" class="footer-nav-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Social & Profiles -->
+        <div class="footer-col footer-col-social">
+          <h4 class="footer-col-title">CONNECT</h4>
+          <ul class="footer-link-list">
+            <li>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-nav-link external-link">
+                <span>GitHub</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-nav-link external-link">
+                <span>LinkedIn</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-nav-link external-link">
+                <span>Twitter / X</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-nav-link external-link">
+                <span>Instagram</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Location & Local Time -->
+        <div class="footer-col footer-col-info">
+          <h4 class="footer-col-title">LOCATION & TIME</h4>
+          <div class="footer-info-item">
+            <span class="info-label">Base</span>
+            <span class="info-value">Hyderabad, India • Worldwide Remote</span>
+          </div>
+          <div class="footer-info-item">
+            <span class="info-label">Local Time</span>
+            <span class="info-value local-time-clock" id="footer-local-time">--:--:-- IST</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Copyright & Back-to-Top -->
+      <div class="footer-bottom-bar">
+        <div class="footer-copyright">
+          <span>&copy; 2026 Rajesh Penumalla.</span>
+          <span class="divider-dot">•</span>
+          <span>Crafted with passion, code &amp; motion.</span>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top-btn" id="back-to-top-btn" aria-label="Back to top">
+          <span>BACK TO TOP</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
